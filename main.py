@@ -1,5 +1,6 @@
 import time
 from turtle import Screen
+from score_board import ScoreBoard
 
 from ball import Ball
 from paddle import Paddle
@@ -21,13 +22,10 @@ screen.onkey(fun=r_paddle.go_down, key='Down')
 screen.onkey(fun=l_paddle.go_up, key='w')
 screen.onkey(fun=l_paddle.go_down, key='s')
 
-l_score = 0
-r_score = 0
+score_board = ScoreBoard()
 
 
 def new_match():
-    global l_score
-    global r_score
 
     ball.refresh()
 
@@ -49,7 +47,7 @@ def new_match():
                 ball.bounce_by_paddle()
             else:
                 print('right paddle missed')
-                l_score += 1
+                score_board.l_score += 1
                 game_is_on = False
 
         if ball.xcor() < -330:
@@ -58,15 +56,13 @@ def new_match():
                 ball.bounce_by_paddle()
             else:
                 print('left paddle missed')
-                r_score += 1
+                score_board.r_score += 1
                 game_is_on = False
 
-
+        score_board.refresh()
 
 while True:
     new_match()
-
-    print(f'current score is {l_score} vs {r_score}')
 
 
 screen.exitonclick()

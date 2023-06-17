@@ -25,6 +25,30 @@ game_is_on = True
 
 while game_is_on:
     ball.move()
+
+    # detect if hit wall
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        print('ball hit wall')
+        ball.bounce_by_wall()
+
+    # detect if hit the right paddle
+    if ball.xcor() > 330:
+        if r_paddle.ycor() - 50 < ball.ycor() < r_paddle.ycor() + 50:
+            print('right paddle caught the ball')
+            ball.bounce_by_paddle()
+        else:
+            print('right paddle missed')
+            game_is_on = False
+
+    if ball.xcor() < -330:
+        if l_paddle.ycor() - 50 < ball.ycor() < l_paddle.ycor() + 50:
+            print('left paddle caught the ball')
+            ball.bounce_by_paddle()
+        else:
+            print('left paddle missed')
+            game_is_on = False
+
+
     time.sleep(.1)
     screen.update()
 

@@ -9,6 +9,19 @@ class Ball(Turtle):
         self.shape('circle')
         self.penup()
         self.setheading(random.randint(20, 45))
+        # self.setheading(75)
 
     def move(self):
         self.forward(20)
+
+    def bounce_by_wall(self):
+        pre_heading = self.heading()
+        self.setheading(360 - pre_heading)
+
+    def bounce_by_paddle(self):
+        pre_heading = self.heading()
+        self.setheading(180 - pre_heading)
+
+
+
+# heading - 270

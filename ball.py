@@ -11,6 +11,10 @@ class Ball(Turtle):
         self.setheading(random.randint(20, 45))
         # self.setheading(75)
 
+    def refresh(self):
+        self.goto(0, 0)
+        self.setheading(180 + self.heading())
+
     def move(self):
         self.forward(20)
 
